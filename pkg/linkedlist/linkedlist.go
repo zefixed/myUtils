@@ -129,3 +129,22 @@ func (n *Node[T]) Index(val T) (error, int) {
 
 	return NotInList, -1
 }
+
+func (n *Node[T]) Reverse() *Node[T] {
+	if n == nil {
+		return n
+	}
+	var prev *Node[T]
+	curr := n
+	next := n.Next
+
+	for next != nil {
+		curr.Next = prev
+		prev = curr
+		curr = next
+		next = next.Next
+	}
+	curr.Next = prev
+
+	return curr
+}

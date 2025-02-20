@@ -352,3 +352,60 @@ func TestIndex(t *testing.T) {
 		})
 	}
 }
+
+func TestReverse(t *testing.T) {
+	tests := []struct {
+		name     string
+		list     *Node[int]
+		wantList *Node[int]
+	}{
+		{
+			"Empty list",
+			nil,
+			nil,
+		},
+		{
+			"One node list",
+			&Node[int]{Val: 0},
+			&Node[int]{Val: 0},
+		},
+		{
+			"Two node list",
+			&Node[int]{Val: 0, Next: &Node[int]{Val: 1}},
+			&Node[int]{Val: 1, Next: &Node[int]{Val: 0}},
+		},
+		{
+			"Three node list",
+			&Node[int]{Val: 0, Next: &Node[int]{Val: 1, Next: &Node[int]{Val: 2}}},
+			&Node[int]{Val: 2, Next: &Node[int]{Val: 1, Next: &Node[int]{Val: 0}}},
+		},
+		{
+			"Four node list",
+			&Node[int]{Val: 0, Next: &Node[int]{Val: 1, Next: &Node[int]{Val: 2, Next: &Node[int]{Val: 3}}}},
+			&Node[int]{Val: 3, Next: &Node[int]{Val: 2, Next: &Node[int]{Val: 1, Next: &Node[int]{Val: 0}}}},
+		},
+		{
+			"Five node list",
+			&Node[int]{Val: 0, Next: &Node[int]{Val: 1, Next: &Node[int]{Val: 2, Next: &Node[int]{Val: 3, Next: &Node[int]{Val: 4}}}}},
+			&Node[int]{Val: 4, Next: &Node[int]{Val: 3, Next: &Node[int]{Val: 2, Next: &Node[int]{Val: 1, Next: &Node[int]{Val: 0}}}}},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.list.Reverse()
+			if tt.wantList != nil {
+				currGot, currWant := got, tt.wantList
+				for currGot != nil && currWant != nil {
+					if !assert.Equal(t, currWant.Val, currGot.Val) {
+						t.Errorf("List mismatch: got %v, want %v", currGot.Val, currWant.Val)
+					}
+					currGot, currWant = currGot.Next, currWant.Next
+				}
+				if currGot != nil || currWant != nil {
+					t.Errorf("List lengths do not match")
+				}
+			}
+		})
+	}
+}
