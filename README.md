@@ -4,7 +4,8 @@ This is a collection of utility functions that I use in my education. I will kee
 ## TODO
 - [x] Linked List
   - Tests coverage 100%
-- [ ] Stack
+- [x] Stack
+  - Tests coverage 100%
 - [ ] Queue
 - [ ] Binary Search Tree
 - [ ] Graph
