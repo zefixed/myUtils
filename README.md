@@ -6,7 +6,8 @@ This is a collection of utility functions that I use in my education. I will kee
   - Tests coverage 100%
 - [x] Stack
   - Tests coverage 100%
-- [ ] Queue
+- [x] Queue
+  - Tests coverage 100%
 - [ ] Binary Search Tree
 - [ ] Graph
 - [ ] Sorting Algorithms
