@@ -5,6 +5,14 @@ import (
 	"testing"
 )
 
+func TestNew(t *testing.T) {
+	got := New[int]()
+	want := &Node[int]{}
+	if !assert.Equal(t, want, got) {
+		t.Errorf("New() = %v, want %v", got, want)
+	}
+}
+
 func TestAppend(t *testing.T) {
 	tests := []struct {
 		name     string
