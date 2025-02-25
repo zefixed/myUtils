@@ -15,6 +15,10 @@ var (
 	NotInList = errors.New("value is not in the list")
 )
 
+func New[T comparable]() *Node[T] {
+	return &Node[T]{}
+}
+
 func (n *Node[T]) Append(val T) error {
 	if n == nil {
 		return EmptyList
