@@ -13,6 +13,10 @@ var (
 	NotInStack = errors.New("not in stack")
 )
 
+func New[T comparable]() *Stack[T] {
+	return &Stack[T]{}
+}
+
 func (s *Stack[T]) Push(elem T) {
 	s.data = append(s.data, elem)
 }
